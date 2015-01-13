@@ -112,7 +112,7 @@ var city='';
 function populateContinents(){
 	var content="";
 	jQuery.each( continents, function( i, val ) {
-		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'" href="#">'+val+'</a></li>';
+		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'">'+val+'</a></li>';
 	});
 	$( "#continents" ).html( content );
 
@@ -133,7 +133,7 @@ function populateContinents(){
 function populateCountries(continent){
 	var content="";
 	jQuery.each( countries[continent], function( i, val ) {
-		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'" href="#">'+val+'</a></li>';
+		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'">'+val+'</a></li>';
 	});
 	$( "#countries" ).html( content );
 
@@ -151,7 +151,7 @@ function populateCountries(continent){
 function populateCities(city){
 	var content="";
 	jQuery.each( cities[city], function( i, val ) {
-		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'" href="#">'+val+'</a></li>';
+		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'">'+val+'</a></li>';
 	});
 	$( "#cities" ).html( content );
 
