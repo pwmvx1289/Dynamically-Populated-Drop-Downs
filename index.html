@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<meta charset="UTF-8">
+	<title>Drop Downs</title>
+	<meta name="Description" content="Dynamically Populated Drop Downs" />
+	<meta name="author" content="AW" />
+
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js">
+	</script>
+	<link rel="stylesheet" href="http://bootswatch.com/yeti/bootstrap.min.css">
+</head>
+
+<style type="text/css">
+.dropdown-toggle{
+	width:10em;
+}
+</style>
+
+<body style="background-color:#F8F8F8">
+
+	<?php
+	include 'navmenu.php';
+	?>
+
+	<script type="text/javascript">$( "#Home" ).addClass( "active" );</script>
+
+	<div style="width:90%; margin:50px auto;">
+
+		<div class="row">
+
+			<div class="col-md-4">
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+						Continents
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1"  id="continents">
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+						Countries
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2"  id="countries">
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-expanded="true">
+						Cities
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3"  id="cities">
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+	</div>	
+
+</body>
+
+<script type="text/javascript">
+
+var continents = 
+["Asia", "Africa","North America","South America","Antarctica","Europe","Australia"];
+
+var countries =
+[
+[],
+["Afghanistan", "Bahrain","Bangladesh","Bhutan","Brunei","Burma","Cambodia","China","East Timor","India"],
+[],
+[],
+[],
+[],
+[],
+[]
+]
+
+var cities =
+[
+[],
+[],
+[],
+[],
+[],
+[],
+[],
+[],
+["Beijing", "Chongqing","Shanghai","Tianjin","Hong Kong","Macau","Anqing","Bengbu","Bozhou","Chaohu"],
+[],
+[]
+]
+
+//Storing selected location
+var continent='';
+var country='';
+var city='';
+
+function populateContinents(){
+	var content="";
+	jQuery.each( continents, function( i, val ) {
+		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'" href="#">'+val+'</a></li>';
+	});
+	$( "#continents" ).html( content );
+
+	$("#continents li a").click(function(){
+		var selText = $(this).text();
+		$(this).parents('.dropdown').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+		continent=selText;
+		$( "#dropdownMenu2" ).html('Countries <span class="caret"></span>');
+		$( "#dropdownMenu3" ).html('Cities <span class="caret"></span>');
+		var index = $(this).attr('tabindex');
+		populateCountries(index);
+		populateCities(0);
+	});
+}
+
+function populateCountries(continent){
+	var content="";
+	jQuery.each( countries[continent], function( i, val ) {
+		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'" href="#">'+val+'</a></li>';
+	});
+	$( "#countries" ).html( content );
+
+	$("#countries li a").click(function(){
+		var selText = $(this).text();
+		$(this).parents('.dropdown').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+		country=selText;
+		$( "#dropdownMenu3" ).html('Cities <span class="caret"></span>');
+		var index = $(this).attr('tabindex');
+		populateCities(index);
+	});
+}
+
+function populateCities(city){
+	var content="";
+	jQuery.each( cities[city], function( i, val ) {
+		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'" href="#">'+val+'</a></li>';
+	});
+	$( "#cities" ).html( content );
+
+	$("#cities li a").click(function(){
+		var selText = $(this).text();
+		$(this).parents('.dropdown').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
+		city=selText;
+	});
+}
+
+$( document ).ready(function() {
+	populateContinents();
+});
+</script>
+
+</html>
