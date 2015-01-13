@@ -87,33 +87,30 @@
 <script type="text/javascript">
 
 var continents = 
-["Asia", "Africa","North America","South America","Antarctica","Europe","Australia"];
+["Asia", "Africa","North America","South America","Antarctica","Europe","Ocenia"];
 
 var countries =
 [
-[],
 ["Afghanistan", "Bahrain","Bangladesh","Bhutan","Brunei","Burma","Cambodia","China","East Timor","India"],
 [],
 [],
 [],
 [],
 [],
-[]
+["Australia", "Fiji", "Kiribati", "Marshall Islands", "Micronesia", "Nauru", "New Zealand"]
 ]
 
+//Asia, Africa, North America, South America, Antarctica, Europe, Ocenia, blank
 var cities =
 [
-[],
-[],
-[],
-[],
-[],
-[],
-[],
-[],
-["Beijing", "Chongqing","Shanghai","Tianjin","Hong Kong","Macau","Anqing","Bengbu","Bozhou","Chaohu"],
-[],
-[]
+[[],[],[],[],[],[],[],["Beijing", "Chongqing","Shanghai","Tianjin","Hong Kong","Macau","Anqing","Bengbu","Bozhou","Chaohu"],[],[]],
+[[]],
+[[]],
+[[]],
+[[]],
+[[]],
+[["Sydney", "Albury", "Armidale", "Bathurst", "Blue Mountains", "Broken Hill", "Campbelltown", "Cessnock", "Dubbo", "Goulburn"],[],[],[],[],[],[]],
+[[]]
 ]
 
 //Storing selected location
@@ -130,7 +127,7 @@ function updatePanel(){
 function populateContinents(){
 	var content="";
 	jQuery.each( continents, function( i, val ) {
-		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'">'+val+'</a></li>';
+		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+i+'">'+val+'</a></li>';
 	});
 	$( "#continents" ).html( content );
 
@@ -143,7 +140,7 @@ function populateContinents(){
 		$( "#dropdownMenu3" ).html('Cities <span class="caret"></span>');
 		var index = $(this).attr('tabindex');
 		populateCountries(index);
-		populateCities(0);
+		populateCities(7,0);
 		updatePanel();
 	});
 }
@@ -151,7 +148,7 @@ function populateContinents(){
 function populateCountries(continent){
 	var content="";
 	jQuery.each( countries[continent], function( i, val ) {
-		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'">'+val+'</a></li>';
+		content=content+'<li role="presentation"><a role="menuitem" continent="'+continent+'" tabindex="'+i+'">'+val+'</a></li>';
 	});
 	$( "#countries" ).html( content );
 
@@ -161,15 +158,16 @@ function populateCountries(continent){
 		city='';
 		$( "#dropdownMenu3" ).html('Cities <span class="caret"></span>');
 		var index = $(this).attr('tabindex');
-		populateCities(index);
+		var continentindex = $(this).attr('continent');
+		populateCities(continentindex, index);
 		updatePanel();
 	});
 }
 
-function populateCities(country){
+function populateCities(continent, country){
 	var content="";
-	jQuery.each( cities[country], function( i, val ) {
-		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'">'+val+'</a></li>';
+	jQuery.each( cities[continent][country], function( i, val ) {
+		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+i+'">'+val+'</a></li>';
 	});
 	$( "#cities" ).html( content );
 
