@@ -27,7 +27,7 @@
 
 		<div class="row">
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 						Continents
@@ -38,7 +38,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
 						Countries
@@ -49,7 +49,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-3">
 				<div class="dropdown">
 					<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-expanded="true">
 						Cities
@@ -57,6 +57,24 @@
 					</button>
 					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3"  id="cities">
 					</ul>
+				</div>
+			</div>
+
+			<div class="panel panel-default col-md-3">
+				<div class="panel panel-primary" style="margin-top:20px;">
+					<div class="panel-heading">Continent</div>
+					<div class="panel-body" id="continentpanel">
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">Country</div>
+					<div class="panel-body" id="countrypanel">
+					</div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">City</div>
+					<div class="panel-body" id="citypanel">
+					</div>
 				</div>
 			</div>
 
@@ -102,6 +120,12 @@ var cities =
 var continent='';
 var country='';
 var city='';
+
+function updatePanel(){
+	$( "#continentpanel" ).html( continent );
+	$( "#countrypanel" ).html( country );
+	$( "#citypanel" ).html( city );
+}
 
 function populateContinents(){
 	var content="";
