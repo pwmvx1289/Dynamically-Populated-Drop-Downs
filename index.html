@@ -117,9 +117,8 @@ function populateContinents(){
 	$( "#continents" ).html( content );
 
 	$("#continents li a").click(function(){
-		var selText = $(this).text();
-		$(this).parents('.dropdown').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-		continent=selText;
+		var continent = $(this).text();
+		$(this).parents('.dropdown').find('.dropdown-toggle').html(continent+' <span class="caret"></span>');
 		country='';
 		city='';
 		$( "#dropdownMenu2" ).html('Countries <span class="caret"></span>');
@@ -138,9 +137,8 @@ function populateCountries(continent){
 	$( "#countries" ).html( content );
 
 	$("#countries li a").click(function(){
-		var selText = $(this).text();
-		$(this).parents('.dropdown').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-		country=selText;
+		var country = $(this).text();
+		$(this).parents('.dropdown').find('.dropdown-toggle').html(country+' <span class="caret"></span>');
 		city='';
 		$( "#dropdownMenu3" ).html('Cities <span class="caret"></span>');
 		var index = $(this).attr('tabindex');
@@ -148,17 +146,16 @@ function populateCountries(continent){
 	});
 }
 
-function populateCities(city){
+function populateCities(country){
 	var content="";
-	jQuery.each( cities[city], function( i, val ) {
+	jQuery.each( cities[country], function( i, val ) {
 		content=content+'<li role="presentation"><a role="menuitem" tabindex="'+(i+1)+'">'+val+'</a></li>';
 	});
 	$( "#cities" ).html( content );
 
 	$("#cities li a").click(function(){
-		var selText = $(this).text();
-		$(this).parents('.dropdown').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-		city=selText;
+		var city = $(this).text();
+		$(this).parents('.dropdown').find('.dropdown-toggle').html(city+' <span class="caret"></span>');
 	});
 }
 
