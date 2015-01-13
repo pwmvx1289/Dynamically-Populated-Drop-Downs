@@ -144,6 +144,7 @@ function populateContinents(){
 		var index = $(this).attr('tabindex');
 		populateCountries(index);
 		populateCities(0);
+		updatePanel();
 	});
 }
 
@@ -161,6 +162,7 @@ function populateCountries(continent){
 		$( "#dropdownMenu3" ).html('Cities <span class="caret"></span>');
 		var index = $(this).attr('tabindex');
 		populateCities(index);
+		updatePanel();
 	});
 }
 
@@ -174,6 +176,7 @@ function populateCities(country){
 	$("#cities li a").click(function(){
 		city = $(this).text();
 		$(this).parents('.dropdown').find('.dropdown-toggle').html(city+' <span class="caret"></span>');
+		updatePanel();
 	});
 }
 
