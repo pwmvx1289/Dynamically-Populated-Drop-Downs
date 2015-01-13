@@ -117,7 +117,7 @@ function populateContinents(){
 	$( "#continents" ).html( content );
 
 	$("#continents li a").click(function(){
-		var continent = $(this).text();
+		continent = $(this).text();
 		$(this).parents('.dropdown').find('.dropdown-toggle').html(continent+' <span class="caret"></span>');
 		country='';
 		city='';
@@ -137,7 +137,7 @@ function populateCountries(continent){
 	$( "#countries" ).html( content );
 
 	$("#countries li a").click(function(){
-		var country = $(this).text();
+		country = $(this).text();
 		$(this).parents('.dropdown').find('.dropdown-toggle').html(country+' <span class="caret"></span>');
 		city='';
 		$( "#dropdownMenu3" ).html('Cities <span class="caret"></span>');
@@ -154,7 +154,7 @@ function populateCities(country){
 	$( "#cities" ).html( content );
 
 	$("#cities li a").click(function(){
-		var city = $(this).text();
+		city = $(this).text();
 		$(this).parents('.dropdown').find('.dropdown-toggle').html(city+' <span class="caret"></span>');
 	});
 }
